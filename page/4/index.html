@@ -158,6 +158,244 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Venus-唯品会分布式框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/28/Venus-唯品会分布式框架/">Venus----唯品会分布式框架</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/28/Venus-唯品会分布式框架/" class="archive-article-date">
+  	<time datetime="2016-04-28T09:25:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://wiki.hexnova.com/display/Venus/HOME" target="_blank" rel="external">http://wiki.hexnova.com/display/Venus/HOME</a></p>
+<p> HOME</p>
+<p>附件：1<br>被Struct添加，被Struct最后更新于2015-Aug-26  (查看更改)<br>Venus（New Version：3.2.14） 是什么？</p>
+<p>它是由(Venus service framework)+服务路由产品（Venus-Bus）+服务注册中心(Venus-Registry) 组合而成，提供远程服务。它着 开发简单、高性能、高并发能力 的服务端框架。<br>客户端与服务端之间的通讯对开发人员完全透明<br>他跟目前我们经常用到的框架：axis、CXF、Hessian WebService、Jboss Remoting等框架类似。<br>系统功能目标：<br>提供高性能的服务通讯框架<br>具备性能监控（可以清晰的看到每个服务执行的时间、过长可以通过监控告警出去）<br>具备流量控制（每个服务每个时刻的调用次数、每天的峰值情况、）<br>访问控制（服务的授权控制）<br>提供可选择性服务数据缓存（cache支持，key采用表达式，由框架提供缓存支持，而不需要编写任何cache相关的代码）<br>提供框架进行再次研发能力，提供interceptor、validator等接口。<br>提供高性能的服务总线（Venus-Bus），能够轻易接入高性能的服务总线。（Venus-Bus项目支持，针对该venus的协议，以后接入服务总线轻而易举）<br>开发方面：<br>服务接口定义清晰(接口、参数、校验、以及服务鉴权)<br>自动生成接口文档，以方便阅读接口声明<br>客户端框架快速开发、提供多种语言版本的客户端<br>提供3种服务调用方式（同步、异步、回调）<br>服务端框架提供多种协议提供服务，而不需要做额外的开发<br>    语言支持情况<br>目前客户端SDK暂时只有java、PHP语言版本<br>服务端面向java语言<br>java 语言开发例子<br>演讲稿下载</p>
+<p>Venus演讲稿.pdf<br>开发人员的关注点</p>
+<ol>
+<li>如何服务化</li>
+</ol>
+<p>采用接口与实现分离，服务接口是一种契约，他与我们开发web Service类似。<br>java开发语言：采用对程序员友好的接口申明形式，开发人员不需要关心客户端与服务端之间的传输协议。<br>其他语言：可以通过该框架提供自定义协议或者Http协议（http协议即将在2.1.0版本release出来）进行交互</p>
+<ol>
+<li>服务接口定制</li>
+</ol>
+<p>定义服务接口<br>接口参数命名<br>定义参数校验规则<br>Java语言服务接口尽量不要依赖其他项目. 接口层面只需要接口相关的参数对象类与服务类<br>异常定义</p>
+<ol>
+<li><p>接口参数校验</p>
+</li>
+<li><p>提供3种交互方式</p>
+<p>请求应答模式：普通的request、response，一般用于接口有返回值<br>异步请求模式：通常用于接口无返回值，客户端并不关心服务器的处理结果，也不用关心服务器处理多少时间<br>异步回调模式：接口无返回值，处理通常消化大量时间，需要服务端通知处理结果的业务接口<br>源代码：</p>
+</li>
+</ol>
+<p>demo 的svn 地址：svn://svn.hexnova.com/venus/venus-helloworld/trunk<br>框架svn地址： svn://svn.hexnova.com/venus/venus-framework/trunk<br>svn的用户名：guest<br>svn密码：guest<br>Maven Repository</p>
+<p><repository><id>hexnova-open</id><url><a href="http://maven.hexnova.com/nexus/content/groups/hexnova-open" target="_blank" rel="external">http://maven.hexnova.com/nexus/content/groups/hexnova-open</a></url><releases><enabled>true</enabled><updatepolicy>never</updatepolicy></releases><snapshots><enabled>true</enabled><updatepolicy>always</updatepolicy></snapshots></repository><br>目前版本情况：</p>
+<p>trunk是最新开发版本，会不停有新东西进入<br>稳定版本: 3.2.14<br>最新版本:3.2.14<br>版本发布Blog地址： <a href="http://wiki.hexnova.com/pages/viewrecentblogposts.action?key=Venus" target="_blank" rel="external">http://wiki.hexnova.com/pages/viewrecentblogposts.action?key=Venus</a><br>开发人员与blog</p>
+<p>日志</p>
+<p>日志: Venus 3.2.12 Release 创建：<br>Struct<br>2014-Sep-05<br>Venus<br>日志: Venus 3.2.10 Release 创建：<br>Struct<br>2014-Jun-25<br>Venus<br>日志: Venus 3.2.3 Released 创建：<br>Struct<br>2014-Feb-19<br>Venus<br>日志: Venus 3.0.9 Released 创建：<br>Struct<br>2013-Dec-25<br>Venus<br>日志: Venus 3.0.6 Released 创建：<br>Struct<br>2013-Nov-22<br>Venus<br>日志: Venus 3.0.4 Released 创建：<br>Struct<br>2013-Nov-14<br>Venus<br>日志: Venus 3.0.3 Released 创建：<br>Struct<br>2013-Oct-25<br>Venus<br>日志: Venus 3.0.2 Released 创建：<br>Struct<br>2013-Oct-21<br>Venus<br>日志: Venus 3.0.1 Released 创建：<br>Struct<br>2013-Oct-14<br>Venus<br>日志: Venus 2.3.0 Released 创建：<br>Struct<br>2012-Oct-08<br>Venus<br>日志: Venus 2.2.7 Released 创建：<br>Struct<br>2012-Sep-24<br>Venus<br>日志: Venus 2.2.6 Released 创建：<br>Struct<br>2012-Jun-28<br>Venus<br>日志: Venus 2.2.3 Released 创建：<br>Struct<br>2012-May-21<br>Venus<br>日志: Venus 2.0.4 Released 创建：<br>Struct<br>2012-Mar-31<br>Venus<br>日志: Venus 2.0.3 Released 创建：<br>Struct<br>2012-Mar-23<br>Venus<br>日志: Venus 2.0.1 Released 创建：<br>Struct<br>2012-Jan-02<br>Venus<br>日志: Venus 1.3.0 Released 创建：<br>Struct<br>2011-Dec-07<br>Venus<br>日志: Venus 1.2.0 Released 创建：<br>Struct<br>2011-Dec-01<br>Venus<br>日志: Venus 1.1.0 Released 创建：<br>Struct<br>2011-Nov-28<br>Venus</p>
+<p>研发人员列表</p>
+<p>昵称    角色    职责    开源社区    目前供职于<br>Struct    Member    负责架构设计、通信框架研发、服务框架研发    Hexnova    上海汽车工业集团<br>Daisy    Member    对象数据序列化、服务接口数据校验、服务框架研发    Hexnova    </p>
+<p>Sunng    Member    服务框架研发    Hexnova    </p>
+<p>Yuanjian Yi    Member<br>PHP客户端开发    Hexnova<br>上海由你网络科技有限公司<br>huawei    Member<br>服务注册中心    Hexnova </p>
+<p>样例：</p>
+<p>简单的接口例子：HelloService.java<br>HelloService接口例子<br>package com.meidusa.venus.hello.api;</p>
+<p>import com.meidusa.venus.annotations.Endpoint;<br>import com.meidusa.venus.annotations.Param;<br>import com.meidusa.venus.annotations.Service;<br>import com.meidusa.venus.notify.InvocationListener;</p>
+<p>/**</p>
+<ul>
+<li>Service framework的 HelloService 接口例子.<p></p></li>
+<li>支持3种调用方式：<p></p></li>
+<li></li><li> 请求应答模式：普通的request、response，一般用于接口有返回值</li>
+<li></li><li> 异步请求模式：通常用于接口无返回值，客户端并不关心服务器的处理结果，也不用关心服务器处理多少时间</li>
+<li></li><li> 异步回调模式：接口无返回值，处理通常消化大量时间，需要服务端通知处理结果的业务接口</li><br>*
+<li><p>@author Struct<br><em>
+</em>/<br>@Service(name=”HelloService”,version=1)<br>publicinterface HelloService {</p>
+<p> /**</p>
+<ul>
+<li>无返回结果的服务调用，支持回调方式，该服务在通讯层面上为异步调用</li>
+<li>@param name</li>
+<li>@param invocationListener 客户端的回调接口<br>*/<br>@Endpoint(name=”sayHelloWithCallbak”)<br>publicabstract void sayHello(@Param(name=”name”) String name,<pre><code>@Param(name=&quot;callback&quot;) InvocationListener&lt;Hello&gt; invocationListener);
+</code></pre>/**</li>
+<li>无返回结果的服务调用，支持同步或者异步调用,</li>
+<li>该接口申明：同步，并且接口申明异常</li>
+<li><p>@param name<br>*/<br>@Endpoint(name=”sayHello”,async=false)<br>publicabstract void sayHello(@Param(name=”name”) String name) throws HelloNotFoundException;</p>
+<p>/**</p>
+</li>
+<li>无返回结果的服务调用，支持同步或者异步调用，无异常申明</li>
+<li>@param name<br>*/<br>@Endpoint(name=”sayAsyncHello”,async=true)<br>publicabstract void sayAsyncHello(@Param(name=”name”) String name);</li>
+</ul>
+</li>
+</ul>
+<pre><code>/**
+ * 有返回结果的服务调用，该接口只能支持同步调用
+ * @param name
+ * @return
+ */
+@Endpoint(name=&quot;getHello&quot;,timeWait=10000)
+publicabstract Hello getHello(@Param(name=&quot;name&quot;) String name);
+</code></pre><p>}<br>客户端TestCase编写<br>客户端TestCase<br>package com.meidusa.venus.hello.client;</p>
+<p>import java.util.concurrent.CountDownLatch;</p>
+<p>import org.junit.Test;<br>import org.junit.runner.RunWith;<br>import org.springframework.beans.factory.annotation.Autowired;<br>import org.springframework.test.context.ContextConfiguration;<br>import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</p>
+<p>import com.meidusa.venus.exception.CodedException;<br>import com.meidusa.venus.hello.api.Hello;<br>import com.meidusa.venus.hello.api.HelloNotFoundException;<br>import com.meidusa.venus.hello.api.HelloService;<br>import com.meidusa.venus.notify.InvocationListener;</p>
+<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@ContextConfiguration(locations=”classpath:/applicationContext-helloworld-client.xml”)<br>public class TestHelloService {</p>
+<pre><code>@Autowired
+private HelloService helloService;
+
+@Test
+public void saySync(){
+    System.out.println(helloService.getHello(&quot;jack&quot;));
+}
+
+@Test
+public void testSyncWithException(){
+    try {
+        helloService.sayHello(&quot;jack&quot;);
+    } catch (HelloNotFoundException e) {
+        System.out.println(&quot;throw an user defined HelloNotFoundException&quot;);
+    }
+}
+
+@Test
+public void testAsync(){
+    helloService.sayAsyncHello(&quot;jack&quot;);
+}
+
+@Test
+public void testCallback() throws Exception{
+    //为了让回调完成，采用countDownLatch计数器方式，避免testcase主线程运行完成而回调未结束的问题
+</code></pre><p>final CountDownLatch latch = new CountDownLatch(1);</p>
+<pre><code>              //在正常的使用的代码中这个类需要单实例，避免过多的callback listener导致内存问题
+                  InvocationListener&lt;Hello&gt; listener = new InvocationListener&lt;Hello&gt;() {
+        public void callback(Hello myobject) {
+            System.out.println(&quot; async call back result=&quot;+myobject);
+            latch.countDown();
+        }
+
+        @Override
+        public void onException(Exception e) {
+            if(e instanceof CodedException){
+                CodedException exception = (CodedException) e;
+                System.out.println(&quot; async call back error:&quot;+exception.getErrorCode()+&quot;,message=&quot;+exception.getMessage());
+            }else{
+                System.out.println(&quot; async call back message=&quot;+e.getMessage());
+            }
+            latch.countDown();
+
+        }
+    };
+
+    helloService.sayHello(&quot;jack&quot;,listener);
+    latch.await();
+}
+</code></pre><p>}<br>服务端的实现<br>服务端对HelloService的简单实现<br>package com.meidusa.venus.hello.impl;</p>
+<p>import java.math.BigDecimal;<br>import java.util.HashMap;<br>import java.util.Map;</p>
+<p>import com.meidusa.venus.hello.api.Hello;<br>import com.meidusa.venus.hello.api.HelloNotFoundException;<br>import com.meidusa.venus.hello.api.HelloService;<br>import com.meidusa.venus.notify.InvocationListener;</p>
+<p>public class DefaultHelloService implements HelloService {<br>    privateString greeting;<br>    publicString getGreeting() {<br>        return greeting;<br>    }</p>
+<pre><code>public void setGreeting(String greeting) {
+    this.greeting = greeting;
+}
+public Hello getHello(String name) {
+    Hello hello = new Hello();
+    hello.setName(name);
+    hello.setGreeting(greeting);
+    Map&lt;String,Object&gt; map = new HashMap&lt;String,Object&gt;();
+    hello.setMap(map);
+    map.put(&quot;1&quot;, 1);
+    map.put(&quot;2&quot;, newLong(2));
+    map.put(&quot;3&quot;, newInteger(3));
+    hello.setBigDecimal(new BigDecimal(&quot;1.341241233412&quot;));
+    return hello;
+}
+
+public void sayHello(String name)  throws HelloNotFoundException {
+    thrownew HelloNotFoundException(name +&quot; not found&quot;);
+}
+
+@Override
+public void sayAsyncHello(String name) {
+    System.out.println(&quot;method sayAsyncHello invoked&quot;);
+}
+
+public void sayHello(String name,
+        InvocationListener&lt;Hello&gt; invocationListener) {
+    Hello hello = new Hello();
+    hello.setName(name);
+    hello.setGreeting(greeting);
+    Map&lt;String,Object&gt; map = new HashMap&lt;String,Object&gt;();
+    hello.setMap(map);
+    map.put(&quot;1&quot;, 1);
+    map.put(&quot;2&quot;, newLong(2));
+    map.put(&quot;3&quot;, newInteger(3));
+
+    if(invocationListener != null){
+        invocationListener.callback(hello);
+    }
+
+}
+</code></pre><p>}<br>最近的更新</p>
+<p>Go语言客户端 go-venus-plugin<br>commented by deephex<br>Jan 22<br>Go语言客户端 go-venus-plugin<br>updated by Struct<br>(view change)<br>Jan 15</p>
+<ol>
+<li>各种客户端简单使用<br>updated by Struct<br>(view change)<br>Jan 15<br>go-venus-plugin.zip<br>attached by Struct<br>Jan 15<br>go-venus-plugin.zip<br>attached by Struct<br>Jan 15<br>JAVA语言客户端<br>commented by 匿名用户<br>2015-Oct-14<br>HOME<br>commented by wangzhenjun<br>2015-Oct-08<br>HOME<br>updated by Struct<br>(view change)<br>2015-Aug-26<br>JAVA语言客户端<br>commented by 匿名用户<br>2015-Aug-10<br>后端处理线程设置<br>updated by Struct<br>(view change)<br>2015-Jul-29<br>. Venus Http协议<br>updated by Struct<br>(view change)<br>2015-Jun-29<br>venus-http-adaptor-3.2.13-distribution.zip<br>attached by Struct<br>2015-Jun-29<br>JAVA语言客户端<br>updated by Struct<br>(view change)<br>2015-Jun-11<br>HOME<br>commented by zhuo<br>2015-Feb-14<br>Venus 3.2.12 Release<br>commented by sunstar_s<br>2015-Jan-14<br>Venus Eclipse Plugin发布<br>commented by 匿名用户<br>2015-Jan-10<br>Venus Eclipse Plugin发布<br>commented by 匿名用户<br>2015-Jan-05<br>HOME<br>commented by 匿名用户<br>2014-Nov-06<br>HOME<br>commented by 匿名用户<br>2014-Nov-05<br>Venus 3.2.12 Release<br>created by Struct<br>2014-Sep-05<br>More </li>
+</ol>
+<p>Navigate space</p>
+<ol>
+<li>各种客户端简单使用</li>
+<li>高级使用指南</li>
+<li>Architecture</li>
+<li>协议以及交互序列图介绍</li>
+<li>性能测试工具–Service-benchmark</li>
+<li>性能测试(单客户端)</li>
+<li><p>极限测试(多客户端)<br>FAQ<br>Venus Eclipse Plugin发布<br>二、其他语言客户端<br>子页面 (10) </p>
+<p>隐藏子页面  |  页面重排<br>页面: 1. 各种客户端简单使用<br>页面: 2. 高级使用指南<br>页面: 3. Architecture<br>页面: 4. 协议以及交互序列图介绍<br>页面: 5. 性能测试工具–Service-benchmark<br>页面: 6. 性能测试(单客户端)<br>页面: 7. 极限测试(多客户端)<br>页面: FAQ<br>页面: Venus Eclipse Plugin发布<br>页面: 二、其他语言客户端 </p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">soa</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/28/Venus-唯品会分布式框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-新浪开源分布式框架-motan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -958,103 +1196,6 @@ exit 0
 
 
   
-    <article id="post-redis的图形化工具" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/redis的图形化工具/">redis的图形化工具</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/28/redis的图形化工具/" class="archive-article-date">
-  	<time datetime="2016-04-28T09:15:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>redis的图形化工具</p>
-<p>2015-10-29 Rails365 运维帮</p>
-<ol>
-<li>介绍</li>
-</ol>
-<p>本篇会介绍几个关于redis的图形化的监控工具和管理工具。</p>
-<ol>
-<li>redis-stat</li>
-</ol>
-<p>redis-stat（<a href="https://github.com/junegunn/redis-stat）提供终端和web端的监控页面，它安装和使用起来很简单。" target="_blank" rel="external">https://github.com/junegunn/redis-stat）提供终端和web端的监控页面，它安装和使用起来很简单。</a></p>
-<p>安装只需要一条指令。</p>
-<p>$ gem install redis-stat</p>
-<p>运行更简单。</p>
-<p>$ redis-stat</p>
-<p>效果图如下：</p>
-<p>也可以以server的形式运行，默认情况下是监听在63790端口。</p>
-<p>$ redis-stat –server</p>
-<p>还可以以后台进程的形式开启服务。</p>
-<p>redis-stat –server –daemon</p>
-<p>效果图如下：</p>
-<ol>
-<li>redis-browser</li>
-</ol>
-<p>redis-browser（<a href="https://github.com/monterail/redis-browser）是redis的web端的图形化管理工具。利用它可以查看和管理redis的数据，界面很简洁，安装和使用这个工具也比较简单，而且它还能和rails应用结合在一起。" target="_blank" rel="external">https://github.com/monterail/redis-browser）是redis的web端的图形化管理工具。利用它可以查看和管理redis的数据，界面很简洁，安装和使用这个工具也比较简单，而且它还能和rails应用结合在一起。</a></p>
-<p>安装。</p>
-<p>$ gem install redis-browser</p>
-<p>要使用也只是需要一条命令。</p>
-<p>$ redis-browser</p>
-<p>效果图如下:</p>
-<ol>
-<li>redmon</li>
-</ol>
-<p>redmon也是一个监控redis运行情况的页面监控工具。</p>
-<p>安装。</p>
-<p>$ gem install redmon</p>
-<p>使用。</p>
-<p>$ redmon</p>
-<p>效果图如下：</p>
-<p>完结。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/redis的图形化工具/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -1159,7 +1300,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1167,11 +1308,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1183,11 +1324,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color3">android</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">android</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1195,15 +1336,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1211,11 +1348,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -158,6 +158,298 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hexo搭建Github静态博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/28/Hexo搭建Github静态博客/">Hexo搭建Github静态博客</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/28/Hexo搭建Github静态博客/" class="archive-article-date">
+  	<time datetime="2016-04-28T04:51:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>环境环境<br>1.1 安装Git</li>
+</ol>
+<p>请参考【1】</p>
+<p>1.2 安装node.js</p>
+<p>下载：<a href="http://nodejs.org/download/" target="_blank" rel="external">http://nodejs.org/download/</a></p>
+<p>可以下载 node-v0.10.33-x64.msi</p>
+<p>安装时直接保持默认配置即可。</p>
+<ol>
+<li>配置Github<br>1.1 建立Repository</li>
+</ol>
+<p>建立与你用户名对应的仓库，仓库名必须为【your_user_name.github.io】</p>
+<p>1.2 配置SSH-Key</p>
+<p>参考【1】</p>
+<ol>
+<li>安装Hexo<br>关于Hexo的安装配置过程，请以官方Hexo【2】给出的步骤为准。</li>
+</ol>
+<p>3.1 Installation</p>
+<p>打开Git命令行，执行如下命令</p>
+<p>$ npm install -g hexo<br>3.2 Quick Start</p>
+<ol>
+<li>Setup your blog</li>
+</ol>
+<p>在电脑中建立一个名字叫「Hexo」的文件夹（比如我建在了D:\Hexo），然后在此文件夹中右键打开Git Bash。执行下面的命令</p>
+<p>$ hexo init<br>[info] Copying data<br>[info] You are almost done! Don’t forget to run <code>npm install</code> before you start b<br>logging with Hexo!<br>Hexo随后会自动在目标文件夹建立网站所需要的文件。然后按照提示，运行 npm install（在 /D/Hexo下）</p>
+<p>npm install<br>会在D:\Hexo目录中安装 node_modules。</p>
+<ol>
+<li>Start the server</li>
+</ol>
+<p>运行下面的命令（在 /D/Hexo下）</p>
+<p>$ hexo server<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.<br>表明Hexo Server已经启动了，在浏览器中打开 <a href="http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。" target="_blank" rel="external">http://localhost:4000/，这时可以看到Hexo已为你生成了一篇blog。</a></p>
+<p>你可以按Ctrl+C 停止Server。</p>
+<ol>
+<li>Create a new post</li>
+</ol>
+<p>新打开一个git bash命令行窗口，cd到/D/Hexo下，执行下面的命令</p>
+<p>$ hexo new “My New Post”<br>[info] File created at d:\Hexo\source_posts\My-New-Post.md<br>刷新<a href="http://localhost:4000/，可以发现已生成了一篇新文章" target="_blank" rel="external">http://localhost:4000/，可以发现已生成了一篇新文章</a> “My New Post”。</p>
+<p>NOTE：</p>
+<p>有一个问题，发现 “My New Post” 被发了2遍，在Hexo server所在的git bash窗口也能看到create了2次。</p>
+<p>$ hexo server<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.<br>[create] d:\Hexo\source_posts\My-New-Post.md<br>[create] d:\Hexo\source_posts\My-New-Post.md<br>经验证，在hexo new “My New Post” 时，如果按Ctrl+C将hexo server停掉，就不会出现发2次的问题了。</p>
+<p>所以，在hexo new文章时，需要stop server。</p>
+<ol>
+<li>Generate static files</li>
+</ol>
+<p>执行下面的命令，将markdown文件生成静态网页。</p>
+<p>$ hexo generate<br>该命令执行完后，会在 D:\Hexo\public\ 目录下生成一系列html，css等文件。</p>
+<ol>
+<li>编辑文章</li>
+</ol>
+<p>hexo new “My New Post”会在D:\Hexo\source_posts目录下生成一个markdown文件：My-New-Post.md</p>
+<p>可以使用一个支持markdown语法的编辑器（比如 Sublime Text 2）来编辑该文件。</p>
+<ol>
+<li>部署到Github</li>
+</ol>
+<p>部署到Github前需要配置_config.yml文件，首先找到下面的内容</p>
+<h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><h2 id="Docs-http-hexo-io-docs-deployment-html"><a href="#Docs-http-hexo-io-docs-deployment-html" class="headerlink" title="Docs: http://hexo.io/docs/deployment.html"></a>Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">http://hexo.io/docs/deployment.html</a></h2><p>deploy:<br>  type:<br>然后将它们修改为</p>
+<h1 id="Deployment-1"><a href="#Deployment-1" class="headerlink" title="Deployment"></a>Deployment</h1><h2 id="Docs-http-hexo-io-docs-deployment-html-1"><a href="#Docs-http-hexo-io-docs-deployment-html-1" class="headerlink" title="Docs: http://hexo.io/docs/deployment.html"></a>Docs: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">http://hexo.io/docs/deployment.html</a></h2><p>deploy:<br>  type: github<br>  repository: git@github.com:zhchnchn/zhchnchn.github.io.git<br>  branch: master<br>NOTE1:</p>
+<p>Repository：必须是SSH形式的url（git@github.com:zhchnchn/zhchnchn.github.io.git），而不能是HTTPS形式的url（<a href="https://github.com/zhchnchn/zhchnchn.github.io.git），否则会出现错误：" target="_blank" rel="external">https://github.com/zhchnchn/zhchnchn.github.io.git），否则会出现错误：</a></p>
+<p>$ hexo deploy<br>[info] Start deploying: github<br>[error] <a href="https://github.com/zhchnchn/zhchnchn.github.io" target="_blank" rel="external">https://github.com/zhchnchn/zhchnchn.github.io</a> is not a valid repositor URL!<br>使用SSH url，如果电脑没有开放SSH 端口，会致部署失败。</p>
+<p>fatal: Could not read from remote repository.</p>
+<p>Please make sure you have the correct access rights<br>and the repository exists.<br>NOTE2：</p>
+<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages。</p>
+<ol>
+<li>测试</li>
+</ol>
+<p>当部署完成后，在浏览器中打开<a href="http://zhchnchn.github.io/（https://zhchnchn.github.io/）" target="_blank" rel="external">http://zhchnchn.github.io/（https://zhchnchn.github.io/）</a> ，正常显示网页，表明部署成功。</p>
+<ol>
+<li>总结：部署步骤</li>
+</ol>
+<p>每次部署的步骤，可按以下三步来进行。</p>
+<p>hexo clean<br>hexo generate<br>hexo deploy</p>
+<ol>
+<li><p>总结：本地调试</p>
+</li>
+<li><p>在执行下面的命令后，</p>
+</li>
+</ol>
+<p>$ hexo g #生成<br>$ hexo s #启动本地服务，进行文章预览调试<br>浏览器输入<a href="http://localhost:4000，查看搭建效果。此后的每次变更_config.yml" target="_blank" rel="external">http://localhost:4000，查看搭建效果。此后的每次变更_config.yml</a> 文件或者新建文件都可以先用此命令调试，尤其是当你想调试新添加的主题时。</p>
+<ol>
+<li>可以用简化的一条命令</li>
+</ol>
+<p>hexo s -g<br>3.3 命令总结</p>
+<p>3.3.1 常用命令</p>
+<p>复制代码<br>hexo new “postName” #新建文章<br>hexo new page “pageName” #新建页面<br>hexo generate #生成静态页面至public目录<br>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）<br>hexo deploy #将.deploy目录部署到GitHub<br>hexo help  # 查看帮助<br>hexo version  #查看Hexo的版本<br>复制代码<br>3.3.2 复合命令</p>
+<p>hexo deploy -g  #生成加部署<br>hexo server -g  #生成加预览<br>命令的简写为：</p>
+<p>hexo n == hexo new<br>hexo g == hexo generate<br>hexo s == hexo server<br>hexo d == hexo deploy<br>4 配置Hexo<br>4.1 配置文件介绍</p>
+<p>下面的各个部分的介绍，请直接参考【3】。</p>
+<ol>
+<li><p>默认目录结构介绍</p>
+</li>
+<li><p>_config.yml配置文件介绍</p>
+</li>
+</ol>
+<p>NOTE：在修改_config.yml配置文件时，按照【3】的介绍进行修改后，重新 hexo clean 或者hexo deploy时，可能会出现如下错误：</p>
+<p>复制代码<br>$ hexo clean<br>[error] { name: ‘HexoError’,<br>  reason: ‘can not read a block mapping entry; a multiline key may not be an imp<br>licit key’,<br>  mark:<br>   { name: null,<br>     buffer: ‘# Hexo Configuration\n## Docs: <a href="http://hexo.io/docs/configuration.h" target="_blank" rel="external">http://hexo.io/docs/configuration.h</a><br>tml\n## Source: <a href="https://github.com/hexojs/hexo/\n\n#" target="_blank" rel="external">https://github.com/hexojs/hexo/\n\n#</a> Site\ntitle: Zhchnchn\nsubt<br>itle: Coding on the way\ndescription: Zhchnchn\’s blog\nauthor: Zhchnchn\nemail:<br>115063497@qq.com\nlanguage:zh-CN\n\n# URL\n## If your site is put in a subdirect<br>……<br>,<br>     position: 249,<br>     line: 12,<br>     column: 0 },<br>  message: ‘Config file load failed’,<br>  domain:<br>   { domain: null,<br>     _events: { error: [Function] },<br>     _maxListeners: 10,<br>     members: [ [Object] ] },<br>  domainThrown: true,<br>  stack: undefined }<br>复制代码<br>我的_config.yml配置文件是一个空行，所以错误肯定在前面，经过对比发现，我前面修改了一下 # Site的各项设置，在冒号:后面没留空格导致了该问题，请对比一下下面的区别：</p>
+<p>错误的设置：</p>
+<p>author:Zhchnchn<br>email:XXX@qq.com<br>language:zh-CN<br>正确的设置：</p>
+<p>author: Zhchnchn<br>email: XXX@qq.com<br>language: zh-CN</p>
+<ol>
+<li>各个主题下的目录介绍（hexo\themes\下的modernist主题为例）</li>
+</ol>
+<p>4.2 安装主题</p>
+<p>Hexo提供了很多主题，具体可参见Hexo Themes【4】。这里我选择使用Pacman主题。具体设置方法如下【5】</p>
+<p>4.2.1 安装</p>
+<ol>
+<li>将Git Shell 切到/D/Hexo目录下，然后执行下面的命令，将pacman下载到 themes/pacman 目录下。</li>
+</ol>
+<p>$ git clone <a href="https://github.com/A-limon/pacman.git" target="_blank" rel="external">https://github.com/A-limon/pacman.git</a> themes/pacman</p>
+<ol>
+<li><p>修改你的博客根目录/D/Hexo下的config.yml配置文件中的theme属性，将其设置为pacman。</p>
+</li>
+<li><p>更新pacman主题</p>
+</li>
+</ol>
+<p>cd themes/pacman<br>git pull<br>NOTE：先备份_config.yml 文件后再升级</p>
+<p>4.2.2 配置</p>
+<p>如果pacman的默认设置不能满足需要的话，你可以修改 /themes/pacman/下的配置文件_config.yml来定制。</p>
+<p>各个config的含义，请参考【5】中的介绍。</p>
+<p>4.2.3 评论框</p>
+<p>静态博客要使用第三方评论系统，pacman配置了多说评论系统（/themes/pacman/_config.yml），默认关闭，只要将其打开即可:false-&gt;true。直接用你的微博/豆瓣/人人/百度/开心网帐号登录多说，即可发表平评论。</p>
+<h4 id="Comment"><a href="#Comment" class="headerlink" title="Comment"></a>Comment</h4><p>duoshuo:<br>  enable: true  ## duoshuo.com<br>  short_name:    ## duoshuo short name.<br>4.2.3 统计</p>
+<ol>
+<li><p>pacman配置了google analysis系统（/themes/pacman/_config.yml），默认关闭，将其打开。</p>
+</li>
+<li><p>需要注册google analysis服务，以获得 跟踪 ID。</p>
+</li>
+</ol>
+<p>如果已有google账户的话，可以直接注册。注册时，需要正确填写 网站的URL。注册成功后，会得到一个跟踪ID，以及一段跟踪代码。</p>
+<ol>
+<li>pacman配置了google analysis系统，将其打开</li>
+</ol>
+<h4 id="Analytics"><a href="#Analytics" class="headerlink" title="Analytics"></a>Analytics</h4><p>google_analytics:<br>  enable: true<br>  id: UA-57032437-1  ## e.g. UA-1766729-8 your google analytics ID.<br>  site: auto ## e.g. yangjian.me your google analytics site or set the value as auto.</p>
+<ol>
+<li>在themes\pacman\layout_partial\google_analytics.ejs 中，已经将google的跟踪代码添加进来了【3】。</li>
+</ol>
+<p>复制代码<br>&lt;% if (theme.google_analytics.enable){ %&gt;</p>
+<p><script type="text/javascript"><br>(function(i,s,o,g,r,a,m){i[‘GoogleAnalyticsObject’]=r;i[r]=i[r]||function(){<br>  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),<br>  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)<br>})(window,document,’script’,’//www.google-analytics.com/analytics.js’,’ga’);<br>ga(‘create’, ‘&lt;%= theme.google_analytics.id %&gt;’, ‘&lt;%= theme.google_analytics.site %&gt;’);<br>ga(‘send’, ‘pageview’);<br></script><br>&lt;% } %&gt;<br>复制代码<br>而且会将/themes/pacman/_config.yml中的id和site值读取进来。</p>
+<ol>
+<li>如果设置不起作用，请试试在\themes\pacman\layout_partial\head.ejs文件中最后，之前，添加上下面的语句试试。</li>
+</ol>
+<p>&lt;%- partial(‘google_analytics’) %&gt;<br>4.3 Custom 404页面</p>
+<ol>
+<li><p>网上大多数教程都将其说的极其简单：“直接在根目录下创建自己的 404.html 就可以”。但我却在这儿废了不少时间，究其原因是大家觉得太简单而说的不够明白。“根目录下”指的不是Hexo目录下，而是Hexo/source目录下。</p>
+</li>
+<li><p>404.html的内容可以设置为下面的内容【6】（NOTE： _config.yml中的permalink_defaults属性不需要修改）。<br>4.4 安装插件</p>
+</li>
+</ol>
+<p>4.4.1 sitemap插件</p>
+<ol>
+<li><p>可以将你站点地图提交给搜索引擎，文件路径\sitemap.xml。</p>
+</li>
+<li><p>安装</p>
+</li>
+</ol>
+<p>$ npm install hexo-generator-sitemap</p>
+<ol>
+<li>启用，修改Hexo_config.yml，增加以下内容</li>
+</ol>
+<p>复制代码</p>
+<h1 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h1><p>Plugins:</p>
+<ul>
+<li>hexo-generator-sitemap</li>
+</ul>
+<p>#sitemap<br>sitemap:<br>  path: sitemap.xml<br>复制代码</p>
+<ol>
+<li>使用方法</li>
+</ol>
+<p>（1）访问 <a href="http://localhost:4000/sitemap.xml，即可看到站点地图。" target="_blank" rel="external">http://localhost:4000/sitemap.xml，即可看到站点地图。</a></p>
+<p>（2）那么怎么将它显示在页面中呢【7】？</p>
+<p>可以修改themes/pacman（也就是你正在使用的那个theme）下的 _config.yml，在 menu 节点下添加下面的内容（下面要介绍的RSS插件也同样）</p>
+<p>menu:<br>  Home: /<br>  Archives: /archives<br>  Rss: /atom.xml<br>  Sitemap: /sitemap.xml<br>修改后的效果如图所示：</p>
+<ol>
+<li>如何向google提交sitemap</li>
+</ol>
+<p>Sitemap 可方便管理员通知搜索引擎他们网站上有哪些可供抓取的网页。向google提交自己hexo博客的sitemap，有助于让别人更好地通过google搜索到自己的博客。</p>
+<p>如何向google提交sitemap，请参考【8】。</p>
+<ol>
+<li>升级插件</li>
+</ol>
+<p>$ npm update</p>
+<ol>
+<li>卸载插件</li>
+</ol>
+<p>$ npm uninstall hexo-generator-sitemap<br>4.4.2 feed插件</p>
+<ol>
+<li><p>RSS的生成插件，你可以在配置显示你站点的RSS，文件路径\atom.xml。</p>
+</li>
+<li><p>安装</p>
+</li>
+</ol>
+<p>$ npm install hexo-generator-feed</p>
+<ol>
+<li>启用，修改Hexo_config.yml，增加以下内容</li>
+</ol>
+<p>复制代码</p>
+<h1 id="Extensions-1"><a href="#Extensions-1" class="headerlink" title="Extensions"></a>Extensions</h1><p>Plugins:</p>
+<ul>
+<li>hexo-generator-feed</li>
+<li>hexo-generator-sitemap</li>
+</ul>
+<p>#Feed Atom<br>feed:<br>  type: atom<br>  path: atom.xml<br>  limit: 20<br>复制代码<br>4.使用方法</p>
+<p>参见sitemap插件介绍</p>
+<ol>
+<li>优化Hexo<br>5.1 添加“Fork me on Github” ribbon</li>
+</ol>
+<p>给blog主页添加一个“Fork me on Github”的绶带（ribbon）【9】，比如选择了红色的ribbon，将相应代码复制到Hexo正在使用的theme下layout.ejs中。比如我使用的pacman theme，那么将下面的代码（注意将you改为你自己的github上的注册名）</p>
+<p><a href="https://github.com/zhchnchn" target="_blank" rel="external"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a><br>粘贴到 themes\pacman\layout\layout.ejs中，放置在 最后，标签之前即可。</p>
+<p>6 其他<br>6.1 中文乱码</p>
+<p>在md 文件中写中文内容，发布出来后为乱码，原因是md的编码不对，将md文件另存为“UTF-8”编码的文件即可解决问题。</p>
+<p>References<br>【1】Windows下Git安装指南（<a href="http://www.cnblogs.com/zhcncn/p/3787849.html）" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/3787849.html）</a></p>
+<p>【2】Hexo （<a href="https://github.com/hexojs/hexo）" target="_blank" rel="external">https://github.com/hexojs/hexo）</a></p>
+<p>【3】hexo你的博客（<a href="http://ibruce.info/2013/11/22/hexo-your-blog/）" target="_blank" rel="external">http://ibruce.info/2013/11/22/hexo-your-blog/）</a></p>
+<p>【4】Hexo All Themes（<a href="https://github.com/hexojs/hexo/wiki/Themes）" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes）</a></p>
+<p>【5】Pacman主题介绍（<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/）" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/）</a></p>
+<p>【6】hexo添加404页面(<a href="http://ruocaiwu.github.io/2014/08/14/hexo%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2/" target="_blank" rel="external">http://ruocaiwu.github.io/2014/08/14/hexo%E6%B7%BB%E5%8A%A0404%E9%A1%B5%E9%9D%A2/</a>)</p>
+<p>【7】如何搭建一个独立博客——简明Github Pages与Hexo教程（<a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/）" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/）</a></p>
+<p>【8】如何向google提交sitemap（详细）(<a href="http://fionat.github.io/blog/2013/10/23/sitemap/" target="_blank" rel="external">http://fionat.github.io/blog/2013/10/23/sitemap/</a>)</p>
+<p>【9】GitHub Ribbons(<a href="https://github.com/blog/273-github-ribbons" target="_blank" rel="external">https://github.com/blog/273-github-ribbons</a>)</p>
+<p>分类: Browser Dev<br>标签: Browser Dev<br>好文要顶 关注我 收藏该文<br>金石开<br>关注 - 9<br>粉丝 - 33<br>+加关注<br>8<br>« 上一篇：VirtualBox中安装CentOS-6.6虚拟机<br>» 下一篇：Sublime Text 3安装与使用<br>posted @ 2014-11-14 17:57 金石开 阅读(29881) 评论(8) 编辑 收藏<br>评论列表</p>
+<p>#1楼 2015-06-20 21:00 刘岩石<br>NOTE2：</p>
+<p>如果你是为一个项目制作网站，那么需要把branch设置为gh-pages<br>请问这句话是什么意思？要是我想建立一个 读书 的栏目呢？<br>支持(0)反对(0)</p>
+<p>#2楼 2015-06-20 21:26 刘岩石<br>还有的就是我写了branch：gh-pages部署在github分支也成功了，但是怎么通过github.io访问的时候显示失败，也就是怎么显示出来分支的内容<br>支持(0)反对(0)</p>
+<p>#3楼 2015-06-20 21:28 刘岩石<br>请问我在本地还要生成一个gh-pages分支吗？<br>支持(0)反对(0)</p>
+<p>#4楼 2015-06-20 21:35 刘岩石<br>hexo new “postName” #新建文章<br>hexo new page “pageName” #新建页面<br>这里的新建页面的意思是？和新建文章有什么区别吗？<br>支持(0)反对(0)</p>
+<p>#5楼 2015-06-20 21:37 刘岩石<br><a href="http://segmentfault.com/q/1010000000618915" target="_blank" rel="external">http://segmentfault.com/q/1010000000618915</a> 解决了<br>支持(0)反对(0)</p>
+<p>#6楼 2015-09-11 15:52 Vsdrop<br>1<br>2<br>3<br>4<br>5<br>6<br>使用SSH url，如果电脑没有开放SSH 端口，会致部署失败。</p>
+<p>fatal: Could not read from remote repository.</p>
+<p>Please make sure you have the correct access rights<br>and the repository exists.</p>
+<p>请问这个问题在 win7 下如何解决 卡在这里了<br>支持(0)反对(0)</p>
+<p>#7楼[楼主] 2015-09-14 16:57 金石开<br>@ Vsdrop<br>你是在公司配置的吗？公司的网络一般在域中已经把SSH端口禁掉了。你最好在自己的机器上配置。<br>支持(0)反对(0)</p>
+<p>#8楼 2016-03-07 11:37 我不是管哥<br>@ 刘岩石<br>请问你这个问题是怎么解决的呢？我现在想把public下面的文件放在master分支下，其他的文件都放在新建的hexo分支下，这个怎么弄呢？<br>什么情况下需要新建gh-page分支呢?<br>支持(0)反对(0)<br>刷新评论刷新页面返回顶部<br>注册用户登录后才能发表评论，请 登录 或 注册，访问网站首页。<br>【推荐】50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库<br>【推荐】融云即时通讯云－豆果美食、Faceu等亿级APP都在用</p>
+<p>最新IT新闻:<br>· Gear VR太小儿科 三星宣布研发不插手机独立虚拟现实头盔<br>· 三星电子第一季度净利润45.6亿美元 同比增长13.6%<br>· 你不知道的关于计算机大师Dijkstra的事情<br>· 手机销号后五类捆绑须解除<br>· Facebook第一季度净利润15.1亿美元 同比增长195%<br>» 更多新闻…</p>
+<p>最新知识库文章:<br>· 架构漫谈（九）：理清技术、业务和架构的关系<br>· 架构漫谈（八）：从架构的角度看如何写好代码<br>· 架构漫谈（七）：不要空设架构师这个职位，给他实权<br>· 架构漫谈（六）：软件架构到底是要解决什么问题？<br>· 架构漫谈（五）：什么是软件<br>» 更多知识库文章…<br>历史上的今天:<br>2012-11-14 Little Tips<br>随笔档案(48)</p>
+<p>2015年9月 (1)</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/28/Hexo搭建Github静态博客/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-my-new-post" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -325,7 +617,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -333,11 +625,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -349,11 +641,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color3">android</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">android</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -361,15 +653,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -377,11 +665,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">

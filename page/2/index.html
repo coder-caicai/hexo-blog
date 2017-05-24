@@ -158,6 +158,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SpringBoot中使用-Scheduled创建定时任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/15/SpringBoot中使用-Scheduled创建定时任务/">SpringBoot中使用@Scheduled创建定时任务</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/15/SpringBoot中使用-Scheduled创建定时任务/" class="archive-article-date">
+  	<time datetime="2016-06-15T09:27:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Spring Boot中使用@Scheduled创建定时任务<br>2016年05月15日 标签：Spring Boot<br>我们在编写Spring Boot应用中经常会遇到这样的场景，比如：我需要定时地发送一些短信、邮件之类的操作，也可能会定时地检查和监控一些标志、参数等。</p>
+<p>创建定时任务<br>在Spring Boot中编写定时任务是非常简单的事，下面通过实例介绍如何在Spring Boot中创建定时任务，实现每过5秒输出一下当前时间。</p>
+<p>在Spring Boot的主类中加入@EnableScheduling注解，启用定时任务的配置<br>@SpringBootApplication<br>@EnableScheduling<br>public class Application {</p>
+<pre><code>public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+}
+</code></pre><p>}<br>创建定时任务实现类<br>@Component<br>public class ScheduledTasks {</p>
+<pre><code>private static final SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;HH:mm:ss&quot;);
+
+@Scheduled(fixedRate = 5000)
+public void reportCurrentTime() {
+    System.out.println(&quot;现在时间：&quot; + dateFormat.format(new Date()));
+}
+</code></pre><p>}<br>运行程序，控制台中可以看到类似如下输出，定时任务开始正常运作了。<br>2016-05-15 10:40:04.073  INFO 1688 — [           main] com.didispace.Application                : Started Application in 1.433 seconds (JVM running for 1.967)<br>现在时间：10:40:09<br>现在时间：10:40:14<br>现在时间：10:40:19<br>现在时间：10:40:24<br>现在时间：10:40:29522<br>现在时间：10:40:34<br>关于上述的简单入门示例也可以参见官方的Scheduling Tasks</p>
+<p>@Scheduled详解<br>在上面的入门例子中，使用了@Scheduled(fixedRate = 5000) 注解来定义每过5秒执行的任务，对于@Scheduled的使用可以总结如下几种方式：</p>
+<p>@Scheduled(fixedRate = 5000) ：上一次开始执行时间点之后5秒再执行<br>@Scheduled(fixedDelay = 5000) ：上一次执行完毕时间点之后5秒再执行<br>@Scheduled(initialDelay=1000, fixedRate=5000) ：第一次延迟1秒后执行，之后按fixedRate的规则每5秒执行一次<br>@Scheduled(cron=”<em>/5 </em> <em> </em> <em> </em>“) ：通过cron表达式定义规则<br>完整示例Chapter4-1-1</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/06/15/SpringBoot中使用-Scheduled创建定时任务/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-SpringBoot属性配置文件详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1415,179 +1489,6 @@ public void test() throws Exception {
 
 
   
-    <article id="post-SpringBoot构建RESTfulAPI与单元测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/15/SpringBoot构建RESTfulAPI与单元测试/">SpringBoot构建RESTfulAPI与单元测试</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/15/SpringBoot构建RESTfulAPI与单元测试/" class="archive-article-date">
-  	<time datetime="2016-06-15T09:14:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Spring Boot构建RESTful API与单元测试<br>2016年03月13日 标签：Spring Boot<br>首先，回顾并详细说明一下在快速入门中使用的@Controller、@RestController、@RequestMapping注解。如果您对Spring MVC不熟悉并且还没有尝试过快速入门案例，建议先看一下快速入门的内容。</p>
-<p>@Controller：修饰class，用来创建处理http请求的对象<br>@RestController：Spring4之后加入的注解，原来在@Controller中返回json需要@ResponseBody来配合，如果直接用@RestController替代@Controller就不需要再配置@ResponseBody，默认返回json格式。<br>@RequestMapping：配置url映射<br>下面我们尝试使用Spring MVC来实现一组对User对象操作的RESTful API，配合注释详细说明在Spring MVC中如何映射HTTP请求、如何传参、如何编写单元测试。</p>
-<ul>
-<li>RESTful API具体设计如下：*</li>
-</ul>
-<p>请求类型    URL    功能说明<br>GET    /users    查询用户列表<br>POST    /users    创建一个用户<br>GET    /users/id    根据id查询一个用户<br>PUT    /users/id    根据id更新一个用户<br>DELETE    /users/id    根据id删除一个用户<br>User实体定义：</p>
-<p>public class User { </p>
-<pre><code>private Long id; 
-private String name; 
-private Integer age; 
-
-// 省略setter和getter 
-</code></pre><p>}<br>实现对User对象的操作接口</p>
-<p>@RestController<br>@RequestMapping(value=”/users”)     // 通过这里配置使下面的映射都在/users下<br>public class UserController { </p>
-<pre><code>// 创建线程安全的Map 
-static Map&lt;Long, User&gt; users = Collections.synchronizedMap(new HashMap&lt;Long, User&gt;()); 
-
-@RequestMapping(value=&quot;/&quot;, method=RequestMethod.GET) 
-public List&lt;User&gt; getUserList() { 
-    // 处理&quot;/users/&quot;的GET请求，用来获取用户列表 
-    // 还可以通过@RequestParam从页面中传递参数来进行查询条件或者翻页信息的传递 
-    List&lt;User&gt; r = new ArrayList&lt;User&gt;(users.values()); 
-    return r; 
-} 
-
-@RequestMapping(value=&quot;/&quot;, method=RequestMethod.POST) 
-public String postUser(@ModelAttribute User user) { 
-    // 处理&quot;/users/&quot;的POST请求，用来创建User 
-    // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数 
-    users.put(user.getId(), user); 
-    return &quot;success&quot;; 
-} 
-
-@RequestMapping(value=&quot;/{id}&quot;, method=RequestMethod.GET) 
-public User getUser(@PathVariable Long id) { 
-    // 处理&quot;/users/{id}&quot;的GET请求，用来获取url中id值的User信息 
-    // url中的id可通过@PathVariable绑定到函数的参数中 
-    return users.get(id); 
-} 
-
-@RequestMapping(value=&quot;/{id}&quot;, method=RequestMethod.PUT) 
-public String putUser(@PathVariable Long id, @ModelAttribute User user) { 
-    // 处理&quot;/users/{id}&quot;的PUT请求，用来更新User信息 
-    User u = users.get(id); 
-    u.setName(user.getName()); 
-    u.setAge(user.getAge()); 
-    users.put(id, u); 
-    return &quot;success&quot;; 
-} 
-
-@RequestMapping(value=&quot;/{id}&quot;, method=RequestMethod.DELETE) 
-public String deleteUser(@PathVariable Long id) { 
-    // 处理&quot;/users/{id}&quot;的DELETE请求，用来删除User 
-    users.remove(id); 
-    return &quot;success&quot;; 
-} 
-</code></pre><p>}<br>下面针对该Controller编写测试用例验证正确性，具体如下。当然也可以通过浏览器插件等进行请求提交验证。</p>
-<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@SpringApplicationConfiguration(classes = MockServletContext.class)<br>@WebAppConfiguration<br>public class ApplicationTests { </p>
-<pre><code>private MockMvc mvc; 
-
-@Before 
-public void setUp() throws Exception { 
-    mvc = MockMvcBuilders.standaloneSetup(new UserController()).build(); 
-} 
-
-@Test 
-public void testUserController() throws Exception { 
-    // 测试UserController 
-    RequestBuilder request = null; 
-
-    // 1、get查一下user列表，应该为空 
-    request = get(&quot;/users/&quot;); 
-    mvc.perform(request) 
-            .andExpect(status().isOk()) 
-            .andExpect(content().string(equalTo(&quot;[]&quot;))); 
-
-    // 2、post提交一个user 
-    request = post(&quot;/users/&quot;) 
-            .param(&quot;id&quot;, &quot;1&quot;) 
-            .param(&quot;name&quot;, &quot;测试大师&quot;) 
-            .param(&quot;age&quot;, &quot;20&quot;); 
-    mvc.perform(request) 
-            .andExpect(content().string(equalTo(&quot;success&quot;))); 
-
-    // 3、get获取user列表，应该有刚才插入的数据 
-    request = get(&quot;/users/&quot;); 
-    mvc.perform(request) 
-            .andExpect(status().isOk()) 
-            .andExpect(content().string(equalTo(&quot;[{\&quot;id\&quot;:1,\&quot;name\&quot;:\&quot;测试大师\&quot;,\&quot;age\&quot;:20}]&quot;))); 
-
-    // 4、put修改id为1的user 
-    request = put(&quot;/users/1&quot;) 
-            .param(&quot;name&quot;, &quot;测试终极大师&quot;) 
-            .param(&quot;age&quot;, &quot;30&quot;); 
-    mvc.perform(request) 
-            .andExpect(content().string(equalTo(&quot;success&quot;))); 
-
-    // 5、get一个id为1的user 
-    request = get(&quot;/users/1&quot;); 
-    mvc.perform(request) 
-            .andExpect(content().string(equalTo(&quot;{\&quot;id\&quot;:1,\&quot;name\&quot;:\&quot;测试终极大师\&quot;,\&quot;age\&quot;:30}&quot;))); 
-
-    // 6、del删除id为1的user 
-    request = delete(&quot;/users/1&quot;); 
-    mvc.perform(request) 
-            .andExpect(content().string(equalTo(&quot;success&quot;))); 
-
-    // 7、get查一下user列表，应该为空 
-    request = get(&quot;/users/&quot;); 
-    mvc.perform(request) 
-            .andExpect(status().isOk()) 
-            .andExpect(content().string(equalTo(&quot;[]&quot;))); 
-
-} 
-</code></pre><p>}<br>至此，我们通过引入web模块（没有做其他的任何配置），就可以轻松利用Spring MVC的功能，以非常简洁的代码完成了对User对象的RESTful API的创建以及单元测试的编写。其中同时介绍了Spring MVC中最为常用的几个核心注解：@Controller,@RestController,RequestMapping以及一些参数绑定的注解：@PathVariable,@ModelAttribute,@RequestParam等。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/15/SpringBoot构建RESTfulAPI与单元测试/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1692,7 +1593,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1700,11 +1601,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1716,11 +1617,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
+                <a href="javascript:void(0)" class="js-tag color3">android</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">android</a>
+                <a href="javascript:void(0)" class="js-tag color2">nodejs</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1728,15 +1629,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
+                <a href="javascript:void(0)" class="js-tag color5">memcached</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1744,11 +1641,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">redis</a>
+                <a href="javascript:void(0)" class="js-tag color1">nginx</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">solr</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
